@@ -1,0 +1,66 @@
+--------------
+SHOW databases
+--------------
+
+Database
+information_schema
+mcraig52assign2db
+mysql
+performance_schema
+--------------
+DROP DATABASE IF EXISTS mcraig52assign2db
+--------------
+
+--------------
+CREATE DATABASE mcraig52assign2db
+--------------
+
+--------------
+GRANT USAGE ON *.* TO 'ta'@'localhost'
+--------------
+
+--------------
+DROP USER 'ta'@'localhost'
+--------------
+
+--------------
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319'
+--------------
+
+--------------
+GRANT ALL PRIVILEGES ON mcraig52assign2db.* TO 'ta'@'localhost'
+--------------
+
+--------------
+FLUSH PRIVILEGES
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+--------------
+CREATE TABLE product (productid CHAR(2) NOT NULL, description CHAR(20), costperitem FLOAT(6,2), quantity MEDIUMINT, PRIMARY KEY (productid))
+--------------
+
+--------------
+CREATE TABLE agent (agentid CHAR(2) NOT NULL, fname CHAR(30), lname CHAR(30), cityworks CHAR(15), commissionpercent TINYINT, PRIMARY KEY (agentid))
+--------------
+
+--------------
+CREATE TABLE customer (customerid CHAR(2) NOT NULL, fname CHAR(30), lname CHAR(30), city CHAR(15), phonenumber CHAR(8), agentid CHAR(2), PRIMARY KEY (customerid), FOREIGN KEY (agentid) REFERENCES agent(agentid))
+--------------
+
+--------------
+CREATE TABLE purchases (customerid CHAR(2) NOT NULL, productid CHAR(2) NOT NULL, quantitypurchased SMALLINT, PRIMARY KEY (customerid,productid), FOREIGN KEY (customerid) REFERENCES customer(customerid), FOREIGN KEY (productid) REFERENCES product(productid))
+--------------
+
+--------------
+SHOW TABLES
+--------------
+
+Tables_in_mcraig52assign2db
+agent
+customer
+product
+purchases
