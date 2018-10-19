@@ -1,0 +1,21 @@
+ERROR 1062 (23000) at line 11: Duplicate entry '66' for key 'PRIMARY'
+--------------
+LOAD DATA LOCAL INFILE 'loaddatafall2018.txt' INTO TABLE product FIELDS TERMINATED BY ','
+--------------
+
+--------------
+SELECT * FROM product
+--------------
+
+productid	description	costperitem	quantity
+11	Bike	150.00	200
+12	Socks	2.00	100
+64	Mouth guard	5.00	100
+66	Elbow pads	14.25	120
+78	Knee Pads	12.15	70
+88	Roller Blades	75.00	89
+99	Helmet	29.00	30
+--------------
+INSERT INTO product (productid, description, costperitem, quantity) VALUES (66, "Elbow pads", 14.25, 120)
+--------------
+
