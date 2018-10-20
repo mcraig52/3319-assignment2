@@ -1,0 +1,26 @@
+-- file four
+
+-- connect to correct db
+USE mcraig52assign2db;
+
+-- show data
+SELECT * FROM agent;
+SELECT * FROM customer;
+SELECT * FROM product;
+SELECT * FROM purchases;
+
+-- views
+CREATE VIEW receipt AS SELECT fname, lname, description, quantitypurchased, costperitem, quantitypurchased * costperitem AS totalcost FROM customer c, product pt, purchases ps WHERE (c.customerid = ps.customerid AND pt.productid = ps.productid) ORDER BY lname;
+SELECT * FROM receipt;
+SELECT * FROM receipt WHERE totalcost > 100;
+
+-- deletes
+SELECT * FROM product;
+DELETE FROM product WHERE description = "Mouth guard";
+SELECT * FROM product;
+-- the row for the Mouth guard product was deleted because its productid was not referenced in the purchases table ie no customer purchased it
+
+SELECT * FROM agent;
+DELETE FROM agent WHERE cityworks = "Springfield";
+SELECT * FROM agent;
+-- the row for agent Hugh Grant was not deleted because his agentid is referenced within the customer table ie he has two customers; Monty and Homer
